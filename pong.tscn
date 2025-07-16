@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://bkhkc2vlvmi3o"]
+
+[ext_resource type="PackedScene" uid="uid://c844o6gas1iih" path="res://wall.tscn" id="1_4opyw"]
+[ext_resource type="Script" uid="uid://tt5iuaqo8lah" path="res://pong.gd" id="1_a6iag"]
+[ext_resource type="PackedScene" uid="uid://o2w74flx3m2s" path="res://center_line.tscn" id="2_pkvn5"]
+[ext_resource type="PackedScene" uid="uid://h0n8df6ofypb" path="res://paddle.tscn" id="3_pkvn5"]
+[ext_resource type="Script" uid="uid://kost4v5jgis2" path="res://paddle.gd" id="4_eipaa"]
+[ext_resource type="PackedScene" uid="uid://bnu0jarcjdmvu" path="res://ball.tscn" id="4_m5tya"]
+[ext_resource type="Script" uid="uid://cjddamm3q1a2a" path="res://computer_paddle.gd" id="5_ludyb"]
+[ext_resource type="Script" uid="uid://dx34du3gg3nwn" path="res://ball.gd" id="7_trlu6"]
+[ext_resource type="AudioStream" uid="uid://buevy8mj4682h" path="res://art/score.ogg" id="9_7860c"]
+
+[node name="Pong" type="Node2D"]
+script = ExtResource("1_a6iag")
+
+[node name="Wall" parent="." instance=ExtResource("1_4opyw")]
+position = Vector2(1, 0)
+
+[node name="Wall2" parent="." instance=ExtResource("1_4opyw")]
+position = Vector2(1, 701)
+
+[node name="CenterLine" parent="." instance=ExtResource("2_pkvn5")]
+
+[node name="Paddle" parent="." instance=ExtResource("3_pkvn5")]
+position = Vector2(1, 307)
+script = ExtResource("4_eipaa")
+
+[node name="Paddle2" parent="." instance=ExtResource("3_pkvn5")]
+position = Vector2(1262, 311)
+script = ExtResource("5_ludyb")
+
+[node name="Ball" parent="." instance=ExtResource("4_m5tya")]
+position = Vector2(646, 149)
+script = ExtResource("7_trlu6")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PlayerScore" type="Label" parent="UI"]
+offset_left = 428.0
+offset_top = 24.0
+offset_right = 481.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 58
+text = "0"
+
+[node name="ComputerScore" type="Label" parent="UI"]
+offset_left = 783.0
+offset_top = 22.0
+offset_right = 828.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 58
+text = "0"
+
+[node name="Score" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_7860c")
+
+[connection signal="ball_scored" from="Ball" to="." method="_on_ball_ball_scored"]

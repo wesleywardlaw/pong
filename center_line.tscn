@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://o2w74flx3m2s"]
+
+[ext_resource type="Script" uid="uid://4ia3cgxwjplg" path="res://center_line.gd" id="1_t1hrt"]
+
+[node name="CenterLine" type="Node2D"]
+script = ExtResource("1_t1hrt")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnu0jarcjdmvu"]
+
+[ext_resource type="AudioStream" uid="uid://eflya8c4qp72" path="res://art/paddle.ogg" id="1_ktgx5"]
+[ext_resource type="AudioStream" uid="uid://cijco12uy706p" path="res://art/wall.ogg" id="2_hgol0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbx31"]
+size = Vector2(13, 14)
+
+[node name="Ball" type="CharacterBody2D"]
+collision_mask = 6
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 13.0
+offset_bottom = 14.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6.5, 7)
+shape = SubResource("RectangleShape2D_cbx31")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="PaddleHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ktgx5")
+
+[node name="WallHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_hgol0")

@@ -75,7 +75,7 @@ func _physics_process(delta):
 			velocity = velocity.normalized() * speed
 			
 			# Added to help prevent sticking
-			position += normal * 15.0
+			position += normal * 20.0
 			
 			if velocity.length() < 0.1:
 				velocity = normal*speed

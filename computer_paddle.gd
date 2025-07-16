@@ -24,13 +24,17 @@ func _physics_process(delta: float) -> void:
 	var future_y = position.y + velocity.y * delta
 	var screen_height = get_viewport_rect().size.y
 	var paddle_height = paddle_rect.size.y
+	var wall_thickness = 17.0
+	
+	var min_y = wall_thickness
+	var max_y = screen_height - wall_thickness - paddle_height
 
 	# Clamp movement to stay within screen
-	if future_y < 0:
+	if future_y < min_y:
 		velocity.y = 0
-		position.y = 0
-	elif future_y + paddle_height > screen_height:
+		position.y = min_y
+	elif future_y > max_y:
 		velocity.y = 0
-		position.y = screen_height - paddle_height
+		position.y = max_y
 
 	move_and_slide()
